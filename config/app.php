@@ -166,7 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
-        'React\ReactServiceProvider',
+        //'React\ReactServiceProvider',
 
         //
 

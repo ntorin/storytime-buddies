@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {},
+  "devDependencies": {},
+  "dependencies": {
+    "express": "^4.14.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "socket.io": "^1.7.1",
+    "webpack-dev-middleware": "^1.8.4"
+  }
+}
