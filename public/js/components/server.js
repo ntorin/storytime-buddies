@@ -7,9 +7,16 @@ io.on('connection', function (socket) {
     socket.on('disconnect', function () {
         console.log('user disconnected');
     });
-    socket.on('chat message', function (msg) {
-        io.emit('chat message', msg);
+    socket.on('chat_message', function (msg) {
+        console.log('message sent: ' + msg);
+        io.emit('chat_message', msg);
     });
+
+    socket.on('story_append', function (msg) {
+        console.log('story words: ' + msg);
+        io.emit('story_append', msg);
+    });
+
 });
 
 
