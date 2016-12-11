@@ -33,4 +33,10 @@ class SiteHomeController extends Controller
 
         return URL::to("/lobby?name=" . $lobby->name . "&id=" . $lobby->id);
     }
+
+    public function getLobbies()
+    {
+        $lobbies = Lobby::all();
+        return $lobbies;
+    }
 }

@@ -17,7 +17,6 @@ class CreateUserLobbyTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('lobby_id');
-            $table->integer('word_limit');
 
             $table->timestamps();
         });

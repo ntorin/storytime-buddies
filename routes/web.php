@@ -30,3 +30,4 @@ Route::post('/createlobby', 'SiteHomeController@createLobby');
 Route::post('/utils/user', 'UtilController@getUser');
 Route::post('/lobbyconnect', 'LobbyController@connect');
 Route::post('/lobbydisconnect', 'LobbyController@disconnect');
+Route::post('/getlobbies', 'SiteHomeController@getLobbies');
