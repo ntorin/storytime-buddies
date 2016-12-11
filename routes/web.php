@@ -20,13 +20,11 @@ Auth::routes();
 //GET
 Route::get('/library', 'LibraryController@index');
 
-Route::get('/lobby', 'LobbyController@index');
+Route::get('/lobby/{lobbyid}', 'LobbyController@index');
 
 
 //POST
 Route::post('/publishstory', 'LobbyController@publishStory');
 Route::post('/getstorypreviews', 'SiteHomeController@getStoryPreviews');
 Route::post('/createlobby', 'SiteHomeController@createLobby');
-Route::post('/utils/user', 'UtilController@getUser');
-Route::post('/lobbyconnect', 'LobbyController@connect');
-Route::post('/lobbydisconnect', 'LobbyController@disconnect');
+

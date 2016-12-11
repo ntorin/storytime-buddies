@@ -31,6 +31,6 @@ class SiteHomeController extends Controller
         ]);
         $_SESSION[$request->input('name')] = $lobby;
 
-        return URL::to("/lobby?name=" . $lobby->name . "&id=" . $lobby->id);
+        return URL::to('/lobby/' . $request->input('name') . $lobby->id);
     }
 }

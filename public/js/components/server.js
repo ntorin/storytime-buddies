@@ -1,13 +1,12 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var $ = require('jquery');
 
 io.on('connection', function (socket) {
     console.log('a user connected');
-    socket.on('join_lobby', function(room){
+    socket.on('join_lobby', function(roomname){
         console.log('joining lobby ...');
-        var lobby = io.of('/lobby?name=' + room.name + "&id=" + room.id);
+        var lobby = io.of('/lobby/' + roomname);
         lobby.on('connection', function(socket){
             console.log('connection on');
             socket.on('disconnect', function () {
@@ -34,24 +33,4 @@ io.on('connection', function (socket) {
 
 http.listen(3000, function () {
     console.log('listening on *:3000');
-})
-
-function findClientsSocket(roomId, namespace) {
-    var res = []
-        // the default namespace is "/"
-        , ns = io.of(namespace ||"/");
-
-    if (ns) {
-        for (var id in ns.connected) {
-            if(roomId) {
-                var index = ns.connected[id].rooms.indexOf(roomId);
-                if(index !== -1) {
-                    res.push(ns.connected[id]);
-                }
-            } else {
-                res.push(ns.connected[id]);
-            }
-        }
-    }
-    return res;
-}
+});

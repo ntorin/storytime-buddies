@@ -14,7 +14,7 @@ class StoryWriter extends React.Component {
         s.on('lobby_created', function () {
             if(t.state.socket == null) {
                 alert('socket added');
-                var socket = io.connect('http://' + window.location.hostname + ':3000' + '/lobby?name=' + getQueryParameter('name') + '&id=' + getQueryParameter('id'));
+                var socket = io.connect('http://' + window.location.hostname + ':3000' + '/lobby/' + roomname);
                 socket.on('story_append', function (msg) {
                     t.receiveStoryAppend(msg);
                 });
@@ -47,7 +47,6 @@ class StoryWriter extends React.Component {
 
     sendMessage(event) {
         this.state.socket.emit('story_append', this.state.msg);
-        alert('emitting');
         event.preventDefault();
 
     }

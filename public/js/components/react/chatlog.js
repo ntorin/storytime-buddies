@@ -12,7 +12,7 @@ class ChatLog extends React.Component {
         //socket listeners
         s.on('lobby_created', function () {
             if(t.state.socket == null) {
-                var socket = io.connect('http://' + window.location.hostname + ':3000' + '/lobby?name=' + getQueryParameter('name') + '&id=' + getQueryParameter('id'));
+                var socket = io.connect('http://' + window.location.hostname + ':3000' + '/lobby/' + roomname);
                 socket.on('chat_message', function (msg) {
                     t.receiveMessage(msg);
                 });
