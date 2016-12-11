@@ -16,26 +16,28 @@ class LobbyController extends Controller
     public function publishStory(Request $request)
     {
         $story = Story::create([
-                'name' => $request->input('name'),
-                'passage' => $request->input('passage'),
-                'editing' => $request->input('editing'),
-                'completed' => $request->input('completed'),
-                'likes' => 0,
-            ]);
+            'name' => $request->input('name'),
+            'passage' => $request->input('passage'),
+            'editing' => $request->input('editing'),
+            'completed' => $request->input('completed'),
+            'likes' => 0,
+        ]);
     }
 
-    public function connect(Request $request){
+    public function connect(Request $request)
+    {
         $lobby = Lobby::find($request->input('roomid'));
         $lobby->members++;
         $lobby->save();
     }
 
-    public function disconnect(Request $request){
+    public function disconnect(Request $request)
+    {
         $lobby = Lobby::find($request->input('roomid'));
         $lobby->members--;
-        if($lobby->members <= 0){
+        if ($lobby->members <= 0) {
             $lobby->delete();
-        }else {
+        } else {
             $lobby->save();
         }
     }

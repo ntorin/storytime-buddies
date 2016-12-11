@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 
 class Lobby extends Model
 {
@@ -10,4 +11,6 @@ class Lobby extends Model
     public $timestamps = true;
 
     protected $guarded = [];
+
+
 }

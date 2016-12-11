@@ -4,7 +4,16 @@ class LobbyList extends React.Component {
         this.state = {
             lobbyname: '',
             lobbypass: '',
+            hostname: window.location.hostname,
+            lobbies: [],
         };
+
+        var t = this;
+        $.post("http://" + window.location.hostname + "/getlobbies", {
+            _token: $('meta[name=csrf-token]').attr('content'),
+        }).done(function (data) {
+            t.setState({lobbies: data});
+        });
 
         this.createLobby = this.createLobby.bind(this);
         this.handleLobbyName = this.handleLobbyName.bind(this);
@@ -34,7 +43,29 @@ class LobbyList extends React.Component {
     }
 
     render() {
+        var t = this;
+        var style = {
+            overflowY: 'auto',
+            width: "100%",
+            height: "200px",
+        };
+
         return <div>
+            <div style={style}>
+            {this.state.lobbies.map(function(lobby, idx){
+                var url = "/lobby?name=" + lobby.name + "&id=" + lobby.id;
+                return <a href={url}>
+                    <div>
+                        {lobby.name}
+                        <br/>
+                        ID: {lobby.id}
+                        <br/>
+                        {lobby.members} Members
+                    </div>
+                    <hr/>
+                </a>
+            })}
+            </div>
             <form onSubmit={this.createLobby}>
                 <input id="lobbyname" autoComplete="off" placeholder="Lobby Name" value={this.state.lobbyname} onChange={this.handleLobbyName}/>
                 <br/>
