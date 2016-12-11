@@ -16,7 +16,7 @@ class CreateStoriesTable extends Migration
         Schema::create('stories', function(Blueprint $table){
             $table->increments('id');
             $table->string('name');
-            $table->string('passage');
+            $table->longText('passage');
             $table->boolean('editing');
             $table->boolean('completed');
             $table->integer('likes');

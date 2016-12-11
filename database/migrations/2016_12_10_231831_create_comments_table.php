@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLobbiesTable extends Migration
+class CreateCommentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateLobbiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lobbies', function(Blueprint $table){
+        Schema::create('comments', function(Blueprint $table){
             $table->increments('id');
-            $table->string('name');
-            $table->string('password');
-            $table->integer('members')->default(0);
-            //$table->integer('story_id');
-            //$table->foreign('story_id')->references('id')->on('stories');
-
+            $table->integer('user_id');
+            $table->integer('story_id');
+            $table->longText('comment');
+            $table->integer('likes');
 
             $table->timestamps();
         });
@@ -33,6 +31,6 @@ class CreateLobbiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lobbies');
+        //
     }
 }

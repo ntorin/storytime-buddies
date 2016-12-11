@@ -17,9 +17,9 @@ class CreateChatlogsTable extends Migration
             $table->increments('id');
             $table->string('message');
             $table->integer('lobby_id');
-            $table->foreign('lobby_id')->references('id')->on('lobbies');
+            //$table->foreign('lobby_id')->references('id')->on('lobbies');
             $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
 

@@ -16,9 +16,7 @@ class CreateUserStoryTable extends Migration
         Schema::create('user_story', function(Blueprint $table){
             $table->increments('id');
             $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('story_id');
-            $table->foreign('story_id')->references('id')->on('stories');
 
             $table->timestamps();
         });

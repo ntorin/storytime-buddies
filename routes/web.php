@@ -17,6 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//GET
 Route::get('/library', 'LibraryController@index');
 
 Route::get('/lobby', 'LobbyController@index');
+
+
+//POST
+Route::post('/publishstory', 'LobbyController@publishStory');
+Route::post('/getstorypreviews', 'SiteHomeController@getStoryPreviews');
+Route::post('/createlobby', 'SiteHomeController@createLobby');
+Route::post('/utils/user', 'UtilController@getUser');
+Route::post('/lobbyconnect', 'LobbyController@connect');
+Route::post('/lobbydisconnect', 'LobbyController@disconnect');

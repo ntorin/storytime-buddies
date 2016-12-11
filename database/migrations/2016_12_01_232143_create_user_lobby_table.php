@@ -16,9 +16,8 @@ class CreateUserLobbyTable extends Migration
         Schema::create('user_lobby', function(Blueprint $table){
             $table->increments('id');
             $table->integer('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->integer('lobby_id');
-            $table->foreign('lobby_id')->references('id')->on('lobbies');
+            $table->integer('word_limit');
 
             $table->timestamps();
         });
