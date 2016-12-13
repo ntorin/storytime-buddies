@@ -14,7 +14,7 @@ class LibraryPreview extends React.Component {
     }
 
     render() {
-        return <div id="libcarousel" className="carousel slide" data-ride="carousel">
+        return <div id="libcarousel" className="carousel slide" data-ride="carousel" style={{height: '30vh'}}>
             <ol className="carousel-indicators">
                 {this.state.stories.map(function (story, idx) {
                     if (idx == 0) {
@@ -28,9 +28,11 @@ class LibraryPreview extends React.Component {
             <div className="carousel-inner" role="listbox">
                 {this.state.stories.map(function (story, idx) {
                     if (idx == 0) {
-                        return <div key={idx} className="item active">{story.passage}</div>
+                        return <div key={idx} className="item active"><h3>{story.name}</h3>
+                            <br/>{story.passage}</div>
                     } else {
-                        return <div key={idx} className="item">{story.passage}</div>
+                        return <div key={idx} className="item"><h3>{story.name}</h3>
+                            <br/>{story.passage}</div>
                     }
                 })
                 }

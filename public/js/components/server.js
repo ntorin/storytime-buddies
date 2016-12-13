@@ -27,6 +27,10 @@ io.on('connection', function (socket) {
                 console.log('call for publish');
                 lobby.emit('story_publish', msg);
             });
+            socket.on('publish_complete', function(story){
+                console.log('publish completed');
+                lobby.emit('publish_complete', story);
+            });
         });
         io.emit('lobby_created');
     });

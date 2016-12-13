@@ -7,10 +7,10 @@
     <div id="searchbarx" class="col-xs-12">
         <!-- search bar for library-->
     </div>
-    <div id="storyarchivex" class="col-xs-8" style="background-color: red">
+    <div id="storyarchivex" class="col-xs-8">
         <!-- story goes here-->
     </div>
-    <div id="resultscommentsx" class="col-xs-4" style="background-color: blue">
+    <div id="resultscommentsx" class="col-xs-4">
         <!-- comments go here. when you search for something, search results also appear here -->
     </div>
 @stop
