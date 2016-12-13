@@ -31,3 +31,6 @@ Route::post('/utils/user', 'UtilController@getUser');
 Route::post('/lobbyconnect', 'LobbyController@connect');
 Route::post('/lobbydisconnect', 'LobbyController@disconnect');
 Route::post('/getlobbies', 'SiteHomeController@getLobbies');
+Route::post('/getsearchquery', 'LibraryController@search');
+Route::post('/getcomments', 'LibraryController@getComments'); //todo
+Route::post('/postcomment', 'LibraryController@postComment'); //todo

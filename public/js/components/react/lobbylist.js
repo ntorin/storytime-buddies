@@ -47,24 +47,26 @@ class LobbyList extends React.Component {
         var style = {
             overflowY: 'auto',
             width: "100%",
-            height: "200px",
+            height: "25vh",
         };
 
         return <div>
             <div style={style}>
+                <ul>
             {this.state.lobbies.map(function(lobby, idx){
                 var url = "/lobby?name=" + lobby.name + "&id=" + lobby.id;
                 return <a href={url}>
-                    <div>
+                    <li>
                         {lobby.name}
                         <br/>
                         ID: {lobby.id}
                         <br/>
                         {lobby.members} Members
-                    </div>
+                    </li>
                     <hr/>
                 </a>
             })}
+            </ul>
             </div>
             <form onSubmit={this.createLobby}>
                 <input id="lobbyname" autoComplete="off" placeholder="Lobby Name" value={this.state.lobbyname} onChange={this.handleLobbyName}/>
