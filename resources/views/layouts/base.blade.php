@@ -13,6 +13,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script src="{{asset('js/bootstrap.min.js') }}"></script>
+    <script>
+        var userID = -1;
+        @if(Auth::check())
+                userID = {{Auth::id()}};
+        @endif
+    </script>
 </head>
 <body>
 <div class="container">
@@ -39,10 +45,7 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{url('/')}}">Home</a></li>
                     <li><a href="{{url('/library')}}">Library</a></li>
-                    <li><a href="">About</a></li>
-                    <li><a href="">Contact</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
