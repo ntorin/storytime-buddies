@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Story;
+use App\UserStory;
 use Illuminate\Http\Request;
 use App\Lobby;
 
@@ -28,6 +29,8 @@ class LobbyController extends Controller
             'completed' => $request->input('completed'),
             'likes' => 0,
         ]);
+
+        return $story;
     }
 
     public function connect(Request $request)
@@ -46,5 +49,12 @@ class LobbyController extends Controller
         } else {
             $lobby->save();
         }
+    }
+
+    public function linkStoryWriter(Request $request){
+        UserStory::create([
+            'user_id' => $request->input('userid'),
+            'story_id' => $request->input('storyid'),
+        ]);
     }
 }

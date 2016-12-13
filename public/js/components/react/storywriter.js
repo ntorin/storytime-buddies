@@ -13,7 +13,6 @@ class StoryWriter extends React.Component {
         //socket listeners
         s.on('lobby_created', function () {
             if(t.state.socket == null) {
-                alert('socket added');
                 var socket = io.connect('http://' + window.location.hostname + ':3000' + '/lobby/' + roomname);
                 socket.on('story_append', function (msg) {
                     t.receiveStoryAppend(msg);
@@ -21,6 +20,15 @@ class StoryWriter extends React.Component {
 
                 socket.on('story_publish', function (msg) {
                     t.publishStory();
+                });
+                socket.on('publish_complete', function(storyid){
+
+                    $.post("http://" + window.location.hostname + "/linkstorywriter", {
+                        _token: $('meta[name=csrf-token]').attr('content'),
+                        storyid: storyid,
+                        userid: userID,
+                    }).done(function (data) {
+                    });
                 });
                 t.setState({socket: socket,});
             }
@@ -34,6 +42,7 @@ class StoryWriter extends React.Component {
 
     publishStory() {
         var body = this.state;
+        var t = this;
         $.post("http://" + window.location.hostname + "/publishstory", {
             _token: $('meta[name=csrf-token]').attr('content'),
             name: "Test Story",
@@ -41,7 +50,7 @@ class StoryWriter extends React.Component {
             editing: 0,
             completed: 1,
         }).done(function (data) {
-            alert(data);
+            t.state.socket.emit('publish_complete', data.id);
         });
     }
 
