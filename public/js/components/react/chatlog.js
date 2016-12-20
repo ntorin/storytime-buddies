@@ -13,12 +13,13 @@ class ChatLog extends React.Component {
         s.on('lobby_created', function () {
             if(t.state.socket == null) {
                 var socket = io.connect('http://' + window.location.hostname + ':3000' + '/lobby/' + roomname);
+                socket.id = userID;
                 socket.on('chat_message', function (msg) {
                     t.receiveMessage(msg);
                 });
 
                 socket.on('connect', function () {
-
+                    alert('connected');
                 });
 
                 t.setState({socket: socket,});

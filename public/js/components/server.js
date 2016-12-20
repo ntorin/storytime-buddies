@@ -5,13 +5,20 @@ var $ = require('jquery');
 
 io.on('connection', function (socket) {
     console.log('a user connected');
-    socket.on('join_lobby', function(roomname){
+    socket.on('test', function(){
+        console.log('test get');
+    });
+    socket.on('join_lobby', function(room){
         console.log('joining lobby ...');
-        var lobby = io.of('/lobby/' + roomname);
+        var lobby = io.of('/lobby/' + room.roomname);
+
+        lobby.removeAllListeners('connection');
+
         lobby.on('connection', function(socket){
             console.log('connection on');
             socket.on('disconnect', function () {
                 console.log('user disconnected');
+
             });
             socket.on('chat_message', function (msg) {
                 console.log('message sent: ' + msg);
