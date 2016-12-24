@@ -33,11 +33,18 @@ class LobbyController extends Controller
         return $story;
     }
 
+    public function updateStory(Request $request){
+        $story = Story::updateOrCreate(
+
+        );
+    }
+
     public function connect(Request $request)
     {
         $lobby = Lobby::find($request->input('roomid'));
         $lobby->members++;
         $lobby->save();
+        return $lobby;
     }
 
     public function disconnect(Request $request)
@@ -56,5 +63,9 @@ class LobbyController extends Controller
             'user_id' => $request->input('userid'),
             'story_id' => $request->input('storyid'),
         ]);
+    }
+
+    public function authLobby(Request $request){
+        return false;
     }
 }

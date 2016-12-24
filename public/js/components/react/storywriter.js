@@ -87,4 +87,4 @@ class StoryWriter extends React.Component {
     }
 }
 
-ReactDOM.render(<StoryWriter/>, document.getElementById('storywriter'));
+export default StoryWriter;

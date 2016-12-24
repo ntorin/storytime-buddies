@@ -20,12 +20,13 @@
         }
     </script>
     <script src="{{asset('js/components/initsocket.js')}}"></script>
+    <div id="lobby" class="col-xs-12">
+        <script type="text/babel" src="{{asset('js/components/react/lobby.js')}}"></script>
+    </div>
     <div id="storywriter" class="col-xs-8">
         <!-- storytime is here -->
-        <script type="text/babel" src="{{asset('js/components/react/storywriter.js')}}"></script>
     </div>
     <div id="lobbychat" class="col-xs-4">
         <!-- lobby chat is here -->
-        <script type="text/babel" src="{{asset('js/components/react/chatlog.js')}}"></script>
     </div>
 @stop

@@ -28,6 +28,11 @@ class SiteHomeController extends Controller
         $lobby = Lobby::create([
            'name' => $request->input('name'),
             'password' => $request->input('password'),
+            'word_limit' => 5,
+            'members' => 0,
+        ]);
+        $story = Story::create([
+            
         ]);
         $_SESSION[$request->input('name')] = $lobby;
 

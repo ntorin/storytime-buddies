@@ -80,4 +80,4 @@ class ChatLog extends React.Component {
     }
 }
 
-ReactDOM.render(<ChatLog/>, document.getElementById('lobbychat'));
+export default ChatLog;
