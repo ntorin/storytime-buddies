@@ -17,6 +17,8 @@ class CreateUserLobbyTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('lobby_id');
+            $table->boolean('master')->default(0);
+            $table->boolean('turn')->default(0);
 
             $table->timestamps();
         });

@@ -1,5 +1,4 @@
 var s = io.connect('http://' + window.location.hostname + ':3000');
-//var socket = io.connect('http://' + window.location.hostname + ':3000');
 var room = {
     _token: $('meta[name=csrf-token]').attr('content'),
     name: getQueryParameter('name'),
@@ -8,13 +7,12 @@ var room = {
     lobby: null,
 };
 var roomname = getQueryParameter('name') + getQueryParameter('id');
-alert(room.id);
-//var socket = io.connect('http://' + window.location.hostname + ':3000' + '/lobby/' + roomname);
 s.on('connect', function(){
     $.post("http://" + window.location.hostname + "/lobbyconnect", {
         _token: $('meta[name=csrf-token]').attr('content'),
         roomname: room.name,
         roomid: room.id,
+        userid: userID,
     }).done(function(data){
         room.lobby = data;
     });
@@ -30,6 +28,7 @@ window.onbeforeunload = function(){
         _token: $('meta[name=csrf-token]').attr('content'),
         roomname: room.name,
         roomid: room.id,
+        userid: userID,
     });
     return null;
 };

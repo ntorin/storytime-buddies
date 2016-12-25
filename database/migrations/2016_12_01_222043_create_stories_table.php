@@ -17,6 +17,7 @@ class CreateStoriesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->longText('passage');
+            $table->integer('lobby_id');
             $table->boolean('editing');
             $table->boolean('completed');
             $table->integer('likes');

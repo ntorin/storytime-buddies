@@ -55,6 +55,11 @@ io.on('connection', function (socket) {
                 lobby.emit('chat_message', msg);
             });
 
+            socket.on('refresh_lobby', function(){
+                console.log('request refresh');
+                lobby.emit('refresh_lobby');
+            });
+
             socket.on('story_append', function (msg) {
                 console.log('story words: ' + msg);
                 lobby.emit('story_append', msg);

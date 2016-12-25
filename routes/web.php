@@ -35,4 +35,6 @@ Route::post('/getsearchquery', 'LibraryController@search');
 Route::post('/getcomments', 'LibraryController@getComments');
 Route::post('/postcomment', 'LibraryController@postComment');
 Route::post('/linkstorywriter', 'LobbyController@linkStoryWriter');
-Route::post('', 'LobbyController@authLobby');
+Route::post('/updatestory', 'LobbyController@updateStory');
+Route::post('/alterturn', 'LobbyController@alterTurn');
+Route::post('/getlobbymembers', 'LobbyController@getLobbyMembers');

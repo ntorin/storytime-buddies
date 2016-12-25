@@ -32,7 +32,12 @@ class SiteHomeController extends Controller
             'members' => 0,
         ]);
         $story = Story::create([
-            
+            'name' => 'Untitled',
+            'passage' => '',
+            'lobby_id' => $lobby->id,
+            'editing' => 1,
+            'completed' => 0,
+            'likes' => 0,
         ]);
         $_SESSION[$request->input('name')] = $lobby;
 

@@ -11,6 +11,31 @@ class Lobby extends React.Component {
 
         var t = this;
 
+        /*var s = io.connect('http://' + window.location.hostname + ':3000');
+        var room = {
+            _token: $('meta[name=csrf-token]').attr('content'),
+            name: getQueryParameter('name'),
+            id: getQueryParameter('id'),
+            roomname: getQueryParameter('name') + getQueryParameter('id'),
+            lobby: null,
+        };
+        var roomname = getQueryParameter('name') + getQueryParameter('id');
+        s.on('connect', function(){
+            $.post("http://" + window.location.hostname + "/lobbyconnect", {
+                _token: $('meta[name=csrf-token]').attr('content'),
+                roomname: room.name,
+                roomid: room.id,
+                userid: userID,
+            }).done(function(data){
+                room.lobby = data;
+            });
+            s.on('disconnecting', function(){
+                console.log('disconnected');
+
+            });
+        });
+        s.emit('join_lobby', room); */
+
         //socket listeners
         s.on('lobby_created', function (clientArray) {
 
@@ -99,12 +124,11 @@ class StoryWriter extends React.Component {
     }
 
     publishStory() {
-        var body = this.state;
         var t = this;
         $.post("http://" + window.location.hostname + "/publishstory", {
             _token: $('meta[name=csrf-token]').attr('content'),
             name: "Test Story",
-            passage: body.passage,
+            passage: t.state.passage,
             editing: 0,
             completed: 1,
         }).done(function (data) {
@@ -113,11 +137,20 @@ class StoryWriter extends React.Component {
     }
 
     sendMessage(event) {
+        var t = this;
         this.state.socket.emit('story_append', this.state.msg);
         event.preventDefault();
         $.post("http://" + window.location.hostname + "/updatestory", {
             _token: $('meta[name=csrf-token]').attr('content'),
-            passage: body.passage,
+            msg: t.state.msg,
+            roomid: room.id,
+        }).done(function(){
+            $.post("http://" + window.location.hostname + "/alterturn", {
+                _token: $('meta[name=csrf-token]').attr('content'),
+                roomid: room.id,
+            }).done(function(){
+                t.state.socket.emit('refresh_lobby');
+            });
         });
 
     }
@@ -160,6 +193,7 @@ class ChatLog extends React.Component {
             msg: '',
             chatlog: [],
             socket: this.props.socket,
+            lobbyList: [],
         };
 
         var t = this;
@@ -170,6 +204,15 @@ class ChatLog extends React.Component {
                 });
 
                 t.state.socket.on('connect', function () {
+                });
+
+                t.state.socket.on('refresh_lobby', function(){
+                    $.post("http://" + window.location.hostname + "/getlobbymembers", {
+                        _token: $('meta[name=csrf-token]').attr('content'),
+                        roomid: room.id,
+                    }).done(function(lobbymembers){
+                        t.setState({lobbyList: lobbymembers,});
+                    });
                 });
 
             }
